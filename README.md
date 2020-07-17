@@ -12,6 +12,6 @@ pkg> add https://github.com/aviks/GameZero.jl
 
 julia> using GameZero
 
-julia> GameZero.initgame("C:\\path\\to\\GZExamples\\Spaceship\\Spaceship.jl")
+julia> GameZero.rungame("C:\\path\\to\\GZExamples\\Spaceship\\Spaceship.jl")
 
 ```
