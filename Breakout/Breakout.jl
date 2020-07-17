@@ -1,11 +1,10 @@
 using Colors
 
-WIDTH = 900
+WIDTH = 600
 HEIGHT = 600
 BACKGROUND=colorant"black"
 BALL_SIZE = 10
 MARGIN = 50
-
 BRICKS_X = 10
 BRICKS_Y = 5
 BRICK_W = (WIDTH - 2 * MARGIN) ÷ BRICKS_X
@@ -22,10 +21,6 @@ struct Brick
     brick_color
     highlight_color
 end
-
-
-#  convert(RGB, brick_color)
-
 
 function reset()
     deleteat!(bricks, 1:length(bricks))
@@ -45,6 +40,7 @@ function reset()
 
     ball.center = (WIDTH / 2, HEIGHT / 3)  #should be centre
     global ball_vel = (rand(-200:200), 400)
+    @show ball_vel
 end
 
 reset()
@@ -61,6 +57,9 @@ function draw(g::Game)
 end
 
 function update(g::Game)
+    # When you have fast moving objects, like the ball, a good trick
+    # is to run the update step several times per frame with tiny time steps.
+    # This makes it more likely that collisions will be handled correctly.
     for _ in 1:3
         update_step(1 / 180)
     end
@@ -71,7 +70,7 @@ function update_step(dt)
     x, y = ball.center  #should be centre
     global ball_vel
     vx, vy = ball_vel
-
+    @show 
     if ball.top > HEIGHT
         reset()
         return
@@ -80,15 +79,15 @@ function update_step(dt)
     y += vy * dt
     ball.center = (x, y)  #should be centre
     if ball.left < 0
-        vx = abs(vx)
+        vx = -vx
         ball.left = -ball.left
     elseif ball.right > WIDTH
-        vx = -abs(vx)
+        vx = -vx
         ball.right += -(2 * (ball.right - WIDTH))
     end
 
     if ball.top < 0
-        vy = abs(vy)
+        vy = -vy
         ball.top = ball.top * -1
     end
     if collide(ball, bat)
@@ -121,8 +120,10 @@ function update_bat_vx()
     x = bat.centerx
     dx = x - bat_prev_centerx
     bat_prev_centerx = x
-
     history = bat_recent_vxs
+    if length(history) >= 5 
+        pop!(history)
+    end
     push!(history, dx)
     vx = sum(history) / length(history)
     global bat_vx = min(10, max(-10, vx))
