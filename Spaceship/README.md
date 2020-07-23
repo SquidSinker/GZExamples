@@ -2,7 +2,7 @@
 
 ## About
 Original game made by SquidSinker for the GZExamples package.
-First game made using GameZero.jl.
+It was the first game made using GameZero.jl. It demonstrates basic movement, animation, and collisions.
 
 ## Screenshot
 ![](spaceship_screenshot.png)
