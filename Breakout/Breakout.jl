@@ -40,7 +40,6 @@ function reset()
 
     ball.center = (WIDTH / 2, HEIGHT / 3)  #should be centre
     global ball_vel = (rand(-200:200), 400)
-    @show ball_vel
 end
 
 reset()
@@ -48,7 +47,7 @@ reset()
 function draw(g::Game)
     clear()
     for b in bricks
-        draw(b.brick, b.brick_color, fill=true) 
+        draw(b.brick, b.brick_color, fill=true)
         draw(Line(b.brick.bottomleft, b.brick.topleft), b.highlight_color)
         draw(Line(b.brick.topleft, b.brick.topright), b.highlight_color)
     end
@@ -70,7 +69,7 @@ function update_step(dt)
     x, y = ball.center  #should be centre
     global ball_vel
     vx, vy = ball_vel
-    @show 
+    @show
     if ball.top > HEIGHT
         reset()
         return
@@ -121,7 +120,7 @@ function update_bat_vx()
     dx = x - bat_prev_centerx
     bat_prev_centerx = x
     history = bat_recent_vxs
-    if length(history) >= 5 
+    if length(history) >= 5
         pop!(history)
     end
     push!(history, dx)
