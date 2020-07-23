@@ -15,3 +15,6 @@ julia> using GameZero
 julia> GameZero.rungame("C:\\path\\to\\GZExamples\\Spaceship\\Spaceship.jl")
 
 ```
+
+## Licenses
+Each game is under a seperate license. Please check inside the directory for the correct one.
