@@ -1,5 +1,6 @@
 WIDTH = 900
 HEIGHT = 600
+BACKGROUND = colorant"#00008b"
 
 space_pod = Actor("Space_pod.png")
 space_pod.pos = 5, 300
