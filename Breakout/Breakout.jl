@@ -69,7 +69,6 @@ function update_step(dt)
     x, y = ball.center  #should be centre
     global ball_vel
     vx, vy = ball_vel
-    @show
     if ball.top > HEIGHT
         reset()
         return
