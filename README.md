@@ -8,7 +8,7 @@ Example games for [GameZero.jl](https://github.com/aviks/GameZero.jl)
 To play the games in this repo, start the Julia REPL and:
 
 ```
-pkg> add https://github.com/aviks/GameZero.jl
+pkg> add GameZero
 
 julia> using GameZero
 
